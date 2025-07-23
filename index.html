@@ -1,0 +1,1134 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groupe Scout Tonnerre - Jamborée 2027</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, #fff 0%, #f8f9fa 100%);
+            padding: 20px 0;
+            box-shadow: 0 2px 20px rgba(0,0,0,0.1);
+            position: relative;
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            opacity: 0;
+            transform: translateX(-30px);
+            animation: slideInLeft 0.8s ease-out forwards;
+        }
+
+        .logo-img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            box-shadow: 0 8px 25px rgba(46, 139, 87, 0.3);
+            transition: all 0.3s ease;
+            object-fit: cover;
+            border: 3px solid #2e8b57;
+        }
+
+        .logo-img:hover {
+            transform: rotate(360deg) scale(1.1);
+            box-shadow: 0 12px 35px rgba(46, 139, 87, 0.4);
+        }
+
+        .logo-text {
+            font-size: 24px;
+            font-weight: bold;
+            color: #2e8b57;
+        }
+
+        .nav-buttons {
+            display: flex;
+            gap: 15px;
+            opacity: 0;
+            transform: translateX(30px);
+            animation: slideInRight 0.8s ease-out 0.2s forwards;
+        }
+
+        .nav-btn {
+            padding: 12px 25px;
+            border: 2px solid #2e8b57;
+            background: transparent;
+            color: #2e8b57;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-decoration: none; /* Important pour enlever le soulignement */
+            z-index: 1;
+        }
+
+        .nav-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #2e8b57, #20b2aa);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .nav-btn:hover {
+            color: white !important;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(46, 139, 87, 0.3);
+        }
+
+        .nav-btn:hover::before {
+            left: 0;
+        }
+
+        /* Hero Section with Glassmorphism */
+        .hero {
+            background: linear-gradient(135deg, #2e8b57 0%, #20b2aa 100%);
+            color: white;
+            padding: 80px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Glassmorphism background elements */
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle at 25% 25%, rgba(255,255,255,0.2) 0%, transparent 50%),
+                radial-gradient(circle at 75% 75%, rgba(255,255,255,0.15) 0%, transparent 50%),
+                radial-gradient(circle at 50% 50%, rgba(32,178,170,0.3) 0%, transparent 50%);
+            animation: float 15s ease-in-out infinite;
+        }
+
+        .glass-shapes {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .glass-shape {
+            position: absolute;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+        }
+
+        .glass-shape:nth-child(1) {
+            width: 300px;
+            height: 200px;
+            top: 10%;
+            left: 5%;
+            transform: rotate(-15deg);
+            animation: floatGlass 12s ease-in-out infinite;
+        }
+
+        .glass-shape:nth-child(2) {
+            width: 250px;
+            height: 150px;
+            top: 60%;
+            right: 10%;
+            transform: rotate(20deg);
+            animation: floatGlass 15s ease-in-out infinite reverse;
+        }
+
+        .glass-shape:nth-child(3) {
+            width: 180px;
+            height: 300px;
+            bottom: 20%;
+            left: 15%;
+            transform: rotate(45deg);
+            animation: floatGlass 18s ease-in-out infinite;
+            animation-delay: -5s;
+        }
+
+        .glass-shape:nth-child(4) {
+            width: 200px;
+            height: 200px;
+            top: 30%;
+            right: 25%;
+            border-radius: 50%;
+            animation: floatGlass 10s ease-in-out infinite;
+            animation-delay: -8s;
+        }
+
+        .glass-shape:nth-child(5) {
+            width: 120px;
+            height: 400px;
+            top: 5%;
+            left: 40%;
+            transform: rotate(-30deg);
+            animation: floatGlass 20s ease-in-out infinite reverse;
+            animation-delay: -3s;
+        }
+
+        .hero-content {
+            max-width: 1500px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(15px);
+            border-radius: 30px;
+            padding: 60px 40px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.5s forwards;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            line-height: 1.6;
+            margin-bottom: 40px;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.7s forwards;
+            text-shadow: 0 1px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            opacity: 0;
+            transform: translateY(30px);
+            animation: fadeInUp 1s ease-out 0.9s forwards;
+        }
+
+        .btn-primary, .btn-secondary {
+            padding: 15px 35px;
+            border: none;
+            border-radius: 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            position: relative;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-primary {
+            background: rgba(220, 53, 69, 0.8);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 8px 25px rgba(220, 53, 69, 0.3);
+        }
+
+        .btn-primary:hover {
+            background: rgba(220, 53, 69, 1);
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(220, 53, 69, 0.4);
+        }
+
+        .btn-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(255, 255, 255, 0.2);
+        }
+
+        /* Main Content */
+        .content {
+            background: #f8f9fa;
+            padding: 80px 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .content-text {
+            opacity: 0;
+            transform: translateX(-50px);
+            animation: slideInLeft 1s ease-out 1.2s forwards;
+        }
+
+        .content-text h2 {
+            font-size: 2.5rem;
+            color: #2e8b57;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .content-text h2 span::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%; 
+            height: 4px;
+            background: linear-gradient(135deg, #2e8b57, #20b2aa);
+            border-radius: 2px;
+        }
+        .content-text p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 40px;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-top: 30px;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #2e8b57;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            color: #666;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .content-images {
+            opacity: 0;
+            transform: translateX(50px);
+            animation: slideInRight 1s ease-out 1.4s forwards;
+        }
+
+        .image-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            height: 500px;
+        }
+
+        .image-card {
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+
+        .image-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 20px 40px rgba(46, 139, 87, 0.3);
+        }
+
+        .image-card:first-child {
+            grid-row: 1 / 3;
+        }
+
+        .image-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .image-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .image-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.7) 100%);
+            z-index: 1;
+            opacity: 0.8;
+            transition: opacity 0.3s ease;
+        }
+
+        .image-card:hover::before {
+            opacity: 0.6;
+        }
+
+        .image-overlay {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            color: white;
+            z-index: 2;
+            transform: translateY(10px);
+            transition: transform 0.3s ease;
+        }
+
+        .image-card:hover .image-overlay {
+            transform: translateY(0);
+        }
+
+        .image-overlay h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+
+        .image-overlay p {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        /* Placeholder styles for empty images */
+        .image-placeholder {
+            background: linear-gradient(135deg, #2e8b57, #20b2aa);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Previous Adventures */
+        .adventures {
+            padding: 80px 20px;
+            background: #f8f9fa;
+        }
+
+        .adventures-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .adventures h2 {
+            font-size: 2.5rem;
+            color: #2e8b57;
+            margin-bottom: 60px;
+        }
+
+        .adventure-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            /* La correction clé pour empêcher l'étirement des autres cartes */
+            align-items: start; 
+        }
+
+        .adventure-card {
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            background-color: #fff;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        .adventure-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.15);
+        }
+
+        .adventure-image-container {
+            position: relative;
+            height: 200px;
+        }
+
+        .adventure-image-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .adventure-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px;
+            color: white;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 80%);
+            text-align: left;
+        }
+
+        .adventure-overlay h3 {
+            font-size: 1.5rem;
+            margin: 0;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .adventure-overlay p {
+            margin: 0;
+        }
+
+        /* Logique de l'accordéon */
+        .adventure-details {
+            max-height: 0;
+            overflow: hidden;
+            padding: 0 20px;
+            transition: max-height 0.5s ease-out, padding 0.5s ease-out;
+        }
+
+        .adventure-card.active .adventure-details {
+            max-height: 500px; /* Assez grand pour le contenu */
+            padding: 20px;
+        }
+
+        .details-description {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+
+        .details-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 10px;
+        }
+
+        .details-gallery img {
+            width: 100%;
+            height: 80px;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+
+        /* Footer */
+        .footer {
+            background: linear-gradient(135deg, #343a40, #495057);
+            color: white;
+            padding: 60px 20px 30px;
+        }
+
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 20px;
+            color: #20b2aa;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #adb5bd;
+            text-decoration: none;
+            line-height: 1.6;
+            transition: color 0.3s ease;
+        }
+
+        .footer-section a:hover {
+            color: #20b2aa;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .contact-icon {
+            width: 20px;
+            height: 20px;
+            background: #20b2aa;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 12px;
+        }
+
+        .justifier {
+            text-align: justify;
+        }
+        /* Animations */
+        @keyframes slideInLeft {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(180deg); }
+        }
+
+        @keyframes floatGlass {
+            0%, 100% { 
+                transform: translateY(0px) translateX(0px) rotate(var(--initial-rotation, 0deg));
+            }
+            25% { 
+                transform: translateY(-20px) translateX(10px) rotate(calc(var(--initial-rotation, 0deg) + 5deg));
+            }
+            50% { 
+                transform: translateY(-30px) translateX(-5px) rotate(calc(var(--initial-rotation, 0deg) + 10deg));
+            }
+            75% { 
+                transform: translateY(-10px) translateX(-15px) rotate(calc(var(--initial-rotation, 0deg) - 5deg));
+            }
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .adventure-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .footer-container {
+                grid-template-columns: 1fr;
+            }
+
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .hero-content {
+                padding: 40px 30px;
+            }
+
+            .glass-shape {
+                opacity: 0.5;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .adventure-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-content {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="logo gst-Photoroom.png" alt="Logo Groupe Scout Tonnerre" class="logo-img"
+                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                <div class="logo-circle" style="display: none; width: 60px; height: 60px; background: linear-gradient(135deg, #2e8b57, #20b2aa); border-radius: 50%; align-items: center; justify-content: center; box-shadow: 0 8px 25px rgba(46, 139, 87, 0.3);">
+                    <span style="font-size: 24px; color: white;">⛺</span>
+                </div>
+                <span class="logo-text">Groupe Scout Tonnerre</span>
+            </div>
+            <div class="nav-buttons">
+                <a href="" class="nav-btn">Accueil</a>
+                <a href="" class="nav-btn">Se connecter</a>
+                <a href="" class="nav-btn">S'inscrire</a>
+            </div>
+        </div>
+    </header>
+    
+    <!-- Hero Section with Glassmorphism -->
+    <section class="hero">
+        <div class="glass-shapes">
+            <div class="glass-shape" style="--initial-rotation: -15deg;"></div>
+            <div class="glass-shape" style="--initial-rotation: 20deg;"></div>
+            <div class="glass-shape" style="--initial-rotation: 45deg;"></div>
+            <div class="glass-shape" style="--initial-rotation: 0deg;"></div>
+            <div class="glass-shape" style="--initial-rotation: -30deg;"></div>
+        </div>
+       
+        <div class="hero-content">
+            <h1>Bienvenue sur le site officiel du<br> GST pour le Jamborée Attoumgblan 2027</h1>
+            <p>Rejoignez-nous pour une aventure scoute extraordinaire qui marquera votre vie.<br>
+            Le Jamborée 2027 promet d'être un événement inoubliable rassemblant des<br>
+            scouts du monde entier autour de valeurs fondamentales et d'aventures.</p>
+            <div class="hero-buttons">
+                <button class="btn-primary" onclick="animateButton(this)">S'inscrire dès maintenant</button>
+                <button class="btn-secondary" onclick="animateButton(this)">En savoir plus</button>
+            </div>
+        </div>
+    </section>
+    <!-- Main Content -->
+    <section class="content">
+        <div class="container">
+            <div class="content-text">
+                <h2>Le Jamborée Attoumgblan 2027 : Une Aventure Unique</h2>
+                <p class="justifier">Le Jamborée Attoumgblan 2027 représente bien plus qu'un simple rassemblement scout. C'est une opportunité unique de découvrir de nouvelles cultures, de créer des amitiés durables et de vivre avec des milliers de jeunes autour des valeurs fondamentales du scoutisme : respect, solidarité, engagement et respect de l'environnement.</p>
+               
+                <p class="justifier">Le Groupe Scout Tonnerre (GST) vous invite à vivre cette expérience transformatrice. Au cœur de rencontres interculturelles et de découvertes, vous développerez votre leadership, tissez des amitiés internationales et découvrirez des aventures inédites dans un cadre naturel exceptionnel.</p>
+               
+                <p class="justifier">Nos activités incluront des défis en pleine nature, des ateliers de développement personnel, des rencontres interculturelles et des projets communautaires qui resteront gravés dans votre mémoire pour toujours.</p>
+               
+                <div class="stats">
+                    <div class="stat-card" onclick="animateCard(this)">
+                        <div class="stat-number" data-target="2027">0</div>
+                        <div class="stat-label">Année du Jamborée</div>
+                    </div>
+                    <div class="stat-card" onclick="animateCard(this)">
+                        <div class="stat-number" data-target="15" data-suffix="+">0</div>
+                        <div class="stat-label">Pays participants</div>
+                    </div>
+                    <div class="stat-card" onclick="animateCard(this)">
+                        <div class="stat-number" data-target="10000" data-suffix="+">0</div>
+                        <div class="stat-label">Scouts attendus</div>
+                    </div>
+                    <div class="stat-card" onclick="animateCard(this)">
+                        <div class="stat-number" data-target="7">0</div>
+                        <div class="stat-label">Jours d'aventure</div>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="content-images">
+                <div class="image-grid">
+                    <div class="image-card" onclick="animateImageCard(this)">
+                        <img src="simo.jpg" alt="Aventure Nature"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="image-placeholder" style="display: none;">
+                            🏕️ Aventure Nature
+                        </div>
+                        <div class="image-overlay">
+                            <h3>Activités</h3>
+                        </div>
+                    </div>
+                    <div class="image-card" onclick="animateImageCard(this)">
+                        <img src="WhatsApp Image 2025-07-23 à 00.44.00_3d340693.jpg" alt="Rencontres Culturelles"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="image-placeholder" style="display: none;">
+                            🤝 Rencontres
+                        </div>
+                        <div class="image-overlay">
+                            <h3>Rencontres</h3>
+                        </div>
+                    </div>
+                    <div class="image-card" onclick="animateImageCard(this)">
+                        <img src="etan.jpg" alt="Activités de Groupe"
+                             onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                        <div class="image-placeholder" style="display: none;">
+                            🎯 Activités
+                        </div>
+                        <div class="image-overlay">
+                            <h3>Apprentissage</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Previous Adventures -->
+    <section class="adventures">
+        <div class="adventures-container">
+            <h2>Nos Précédentes Aventures</h2>
+            <div class="adventure-grid">
+                <!-- Carte 1 -->
+                <div class="adventure-card">
+                    <div class="adventure-image-container">
+                        <img src="survie.jpg" alt="Aventure 1">
+                        <div class="adventure-overlay">
+                            <h3>Gamé</h3>
+                            <p>2025</p>
+                        </div>
+                    </div>
+                    <div class="adventure-details">
+                        <p class="details-description">Description du camp de Gamé en 2025.</p>
+                        <div class="details-gallery">
+                            <img src="game1.jpg" alt="Photo 1">
+                            <img src="game2.jpg" alt="Photo 2">
+                            <img src="game3.jpg" alt="Photo 3">
+                        </div>
+                    </div>
+                </div>
+                <!-- Carte 2 -->
+                <div class="adventure-card">
+                    <div class="adventure-image-container">
+                        <img src="rando.jpg" alt="Aventure 2">
+                        <div class="adventure-overlay">
+                            <h3>Kpalime</h3>
+                            <p>2024</p>
+                        </div>
+                    </div>
+                    <div class="adventure-details">
+                        <p class="details-description">Description du camp de Kpalimé en 2024.</p>
+                        <div class="details-gallery">
+                            <img src="kpa1.jpg" alt="Photo 1">
+                            <img src="kpa2.jpg" alt="Photo 2">
+                            <img src="kpa3.jpg" alt="Photo 3">
+                        </div>
+                    </div>
+                </div>
+                <!-- Répétez la même structure pour les autres cartes -->
+                <div class="adventure-card">
+                    <div class="adventure-image-container">
+                        <img src="togo.jpg" alt="Aventure 3">
+                        <div class="adventure-overlay"><h3>Togoville</h3><p>2023</p></div>
+                    </div>
+                    <div class="adventure-details">
+                        <p class="details-description">Description...</p>
+                        <div class="details-gallery">
+                            <img src="tg1.jpg" alt="Photo 1">
+                            <img src="tg2.jpg" alt="Photo 2">
+                            <img src="tg3.jpg" alt="Photo 3">
+                        </div>
+                    </div>
+                </div>
+                <div class="adventure-card">
+                    <div class="adventure-image-container">
+                        <img src="kara.jpg" alt="Aventure 4">
+                        <div class="adventure-overlay">
+                            <h3>Côte d'Ivoire</h3>
+                            <p>2023</p>
+                        </div>
+                    </div>
+                    <div class="adventure-details">
+                        <p class="details-description">Description...</p>
+                        <div class="details-gallery">
+                            <img src="ci1.jpg">
+                            <img src="ci2.jpg">
+                            <img src="ci3.jpg">
+                        </div>
+                    </div>
+                </div>
+                <div class="adventure-card">
+                    <div class="adventure-image-container">
+                        <img src="kr.jpg" alt="Aventure 5">
+                        <div class="adventure-overlay">
+                            <h3>Kara</h3>
+                            <p>2022</p>
+                        </div>
+                    </div>
+                    <div class="adventure-details">
+                        <p class="details-description">Description...</p>
+                        <div class="details-gallery">
+                            <img src="kr1.jpg">
+                            <img src="kr2.jpg">
+                            <img src="kr3.jpg">
+                        </div>
+                    </div>
+                </div>
+                <div class="adventure-card">
+                    <div class="adventure-image-container">
+                        <img src="2017.jpg" alt="Aventure 6">
+                        <div class="adventure-overlay">
+                            <h3>Kouma-Bala</h3>
+                            <p>2017</p>
+                        </div>
+                    </div>
+                    <div class="adventure-details">
+                        <p class="details-description">Description...</p>
+                        <div class="details-gallery">
+                            <img src="">
+                            <img src="">
+                            <img src="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+   
+<!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-section">
+                <h3>Groupe Scout Tonnerre</h3>
+                <p>Depuis plus de 10 ans, le Groupe Scoute Tonnerre (GST) forme des jeunes citoyens responsables et engagés à travers les valeurs du scoutisme.</p>
+            </div>
+           
+            <div class="footer-section">
+                <h3>Jamborée 2027</h3>
+                <p>📍 Man, Côte d'Ivoire Août 2027</p>
+                <p>📧 E-mail: jamboree@gst.com</p>
+            </div>
+           
+            <div class="footer-section">
+                <h3>Contact</h3>
+                <div class="contact-item">
+                    <div class="contact-icon">📞</div>
+                    <span>(+228) 91 36 21 05</span>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">📱</div>
+                    <span>(+228) 70 00 54 00</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        // Counter animation for stats
+        function animateCounter(element, target) {
+            let current = 0;
+            const suffix = element.getAttribute('data-suffix') || ''; // Récupère le suffixe
+            const increment = target / 100;
+
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                    element.textContent = Math.floor(current) + suffix; // Ajoute le suffixe à la fin
+                } else {
+                    element.textContent = Math.floor(current);
+                }
+            }, 20);
+        }
+        // Initialize counters when cards are clicked
+        function animateCard(card) {
+            const number = card.querySelector('.stat-number');
+            const target = parseInt(number.getAttribute('data-target'));
+           
+            card.style.transform = 'scale(1.1)';
+            setTimeout(() => {
+                card.style.transform = 'scale(1)';
+            }, 200);
+           
+            animateCounter(number, target);
+        }
+        // Auto-animate counters on page load
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                document.querySelectorAll('.stat-card').forEach(card => {
+                    const number = card.querySelector('.stat-number');
+                    const target = parseInt(number.getAttribute('data-target'));
+                    animateCounter(number, target);
+                });
+            }, 2000);
+        });
+        // Button animation
+        function animateButton(button) {
+            button.style.transform = 'scale(0.95)';
+            button.style.transition = 'transform 0.1s ease';
+           
+            setTimeout(() => {
+                button.style.transform = 'scale(1)';
+            }, 100);
+        }
+        // Image card animation
+        function animateImageCard(card) {
+            card.style.transform = 'scale(1.1) rotate(5deg)';
+            card.style.transition = 'transform 0.3s ease';
+           
+            setTimeout(() => {
+                card.style.transform = 'scale(1) rotate(0deg)';
+            }, 300);
+        }
+        // Adventure card animation
+        // Nouvelle logique pour les cartes "Adventure" interactives
+        // LOGIQUE ACCORDÉON SIMPLE POUR LES AVENTURES
+        const adventureCards = document.querySelectorAll('.adventure-card');
+
+        adventureCards.forEach(card => {
+            card.addEventListener('click', () => {
+                const isAlreadyActive = card.classList.contains('active');
+
+                adventureCards.forEach(c => {
+                    c.classList.remove('active');
+                });
+
+                if (!isAlreadyActive) {
+                    card.classList.add('active');
+                }
+            });
+        });
+
+        // La fonction de fermeture doit maintenant retirer toutes les classes possibles
+        function closeAllCards() {
+            adventureCards.forEach(c => {
+                c.classList.remove('card-expanded', 'expand-down', 'expand-up', 'card-hidden');
+            });
+        }
+
+        // Fonction pour fermer toutes les cartes et réinitialiser la grille
+        function closeAllCards() {
+            adventureGrid.classList.remove('grid-expanded');
+            adventureCards.forEach(c => {
+                c.classList.remove('card-expanded', 'expand-down', 'expand-up');
+            });
+        }
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.nav-btn').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                btn.style.transform = 'scale(0.95)';
+                setTimeout(() => {
+                    btn.style.transform = 'scale(1)';
+                }, 150);
+            });
+        });
+        // Parallax effect for hero section
+        // Parallax effect for hero section (Optimized with requestAnimationFrame)
+        const hero = document.querySelector('.hero');
+        let ticking = false;
+
+        function updateParallax() {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.5;
+            
+            if (hero) {
+                hero.style.transform = `translateY(${rate}px)`;
+            }
+            ticking = false;
+        }
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        });
+        // Add floating animations to random elements
+        function createFloatingElements() {
+            const sections = document.querySelectorAll('section');
+            sections.forEach(section => {
+                for (let i = 0; i < 3; i++) {
+                    const element = document.createElement('div');
+                    element.className = 'floating-element';
+                    element.style.position = 'absolute';
+                    element.style.top = Math.random() * 100 + '%';
+                    element.style.left = Math.random() * 100 + '%';
+                    element.style.animationDelay = Math.random() * 6 + 's';
+                    element.style.animationDuration = (Math.random() * 4 + 4) + 's';
+                    section.appendChild(element);
+                }
+            });
+        }
+        // Initialize floating elements
+        setTimeout(createFloatingElements, 1000);
+        // Add hover effects to all cards
+        document.querySelectorAll('.stat-card, .adventure-card, .image-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                card.style.transition = 'all 0.3s ease';
+            });
+        });
+        // Add typing effect to hero title
+        function typeWriter(element, text, speed = 100) {
+            let i = 0;
+            element.innerHTML = '';
+            element.style.opacity = '1';
+           
+            function type() {
+                if (i < text.length) {
+                    element.innerHTML += text.charAt(i);
+                    i++;
+                    setTimeout(type, speed);
+                }
+            }
+            type();
+        }
+        // Initialize typing effect
+        setTimeout(() => {
+            const heroTitle = document.querySelector('.hero h1');
+            const originalText = heroTitle.textContent;
+            typeWriter(heroTitle, originalText, 50);
+        }, 1500);
+    </script>
+</body>
+</html>
