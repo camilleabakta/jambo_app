@@ -668,50 +668,102 @@
             50% { transform: scale(1.05); }
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
+       /* =============================================== */
+        /* --- SECTION RESPONSIVE --- */
+        /* =============================================== */
+        
+        /* Pour les tablettes et appareils plus petits (moins de 992px) */
+        @media (max-width: 992px) {
             .container {
                 grid-template-columns: 1fr;
                 gap: 40px;
             }
-
+        
             .adventure-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
-
+        
             .footer-container {
-                grid-template-columns: 1fr;
+                grid-template-columns: 1fr 1fr;
             }
-
-            .hero h1 {
-                font-size: 2.5rem;
-            }
-
+        }
+        
+        /* Pour les mobiles (moins de 768px) */
+        @media (max-width: 768px) {
+            /* --- Header --- */
             .nav-container {
                 flex-direction: column;
                 gap: 20px;
             }
-
-            .hero-content {
-                padding: 40px 30px;
+        
+            /* --- Hero Section --- */
+            .hero {
+                padding: 60px 20px;
+                min-height: 60vh;
             }
-
-            .glass-shape {
-                opacity: 0.5;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .adventure-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .stats {
-                grid-template-columns: 1fr;
-            }
-
             .hero-content {
                 padding: 30px 20px;
+            }
+            .hero h1 {
+                font-size: 2.2rem; /* Police du titre plus petite */
+            }
+            .hero p {
+                font-size: 1.1rem; /* Police du paragraphe plus petite */
+            }
+            .hero-buttons {
+                flex-direction: column; /* Les boutons s'empilent */
+                gap: 15px;
+            }
+        
+            /* --- Grilles et Contenu --- */
+            .content {
+                padding: 60px 20px;
+            }
+            .content-text h2 {
+                font-size: 2rem;
+            }
+            .stats {
+                grid-template-columns: 1fr 1fr; /* Garde 2 colonnes sur tablette */
+            }
+        
+            /* --- Section Aventures --- */
+            .adventures {
+                padding: 60px 20px;
+            }
+            .adventures h2 {
+                font-size: 2rem;
+                margin-bottom: 40px;
+            }
+            .adventure-grid {
+                gap: 20px;
+            }
+        
+            /* --- Footer --- */
+            .footer-container {
+                grid-template-columns: 1fr; /* Une seule colonne */
+                text-align: center; /* Centrer le contenu pour un meilleur look */
+            }
+        }
+        
+        /* Pour les très petits mobiles (moins de 480px) */
+        @media (max-width: 480px) {
+            .adventure-grid {
+                grid-template-columns: 1fr; /* Une seule colonne pour les aventures */
+            }
+        
+            .stats {
+                grid-template-columns: 1fr; /* Une seule colonne pour les stats */
+            }
+        
+            .logo-text {
+                font-size: 20px; /* Réduire la taille du texte du logo */
+            }
+        
+            .nav-buttons {
+                width: 100%;
+                display: grid;
+                grid-template-columns: 1fr; /* Les boutons de nav prennent toute la largeur */
+                text-align: center;
             }
         }
     </style>
@@ -748,7 +800,7 @@
         </div>
        
         <div class="hero-content">
-            <h1>Bienvenue sur le site officiel du<br> GST pour le Jamborée Attoumgblan 2027</h1>
+            <h1>Bienvenue sur le site officiel du GST pour le Jamborée Attoumgblan 2027</h1>
             <p>Rejoignez-nous pour une aventure scoute extraordinaire qui marquera votre vie.<br>
             Le Jamborée 2027 promet d'être un événement inoubliable rassemblant des<br>
             scouts du monde entier autour de valeurs fondamentales et d'aventures.</p>
